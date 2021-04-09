@@ -31,7 +31,6 @@
   },
   "scripts": {
     "test": "node ./test/number && node ./test/result",
-    "prepublishOnly": "npm test",
     "pub": "npm publish --access public"
   },
   "license": "MIT"

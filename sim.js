@@ -7,6 +7,7 @@ import W from 'grosso-modo/weibull.js'
 import RandomNumber from './src/_random-number.js'
 import Sim from './src/_sim.js'
 
+//TODO accept array OR string as factory?
 export default function( factory, confidence=0.5 ) {
 	const	risks = [],
 				rndNs = [],

@@ -1,5 +1,5 @@
 <!-- markdownlint-disable MD004 MD007 MD010 MD041 MD022 MD024 MD029 MD031 MD032 MD036 -->
-# correl-var
+# correl-range
 
 *correlated variable monte carlo simulations*
 

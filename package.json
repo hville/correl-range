@@ -1,7 +1,9 @@
 {
   "name": "@hugov/correl-range",
   "type": "module",
-  "version": "0.0.2",
+  "main": "sim.js",
+  "browser": "sim.js",
+  "version": "0.1.0",
   "description": "monte carlo simulation for correlated variables expressed as ranges",
   "keywords": [
     "correlated",

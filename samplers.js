@@ -2,6 +2,8 @@ import icdf from 'norm-dist/icdf.js'
 import {fillZ} from './src/utils.js'
 import {sattolo as satt, shuffle as shuf, permute as perm} from 'array-order'
 
+//TODO only random (simulation) and permute (sensitivity) are used
+
 export function random(dim) {
 	const zs = dim.length ? dim : new Float64Array(dim)
 	return function() {

@@ -7,8 +7,9 @@ import SampleDistribution from 'sample-distribution'
 import LazyStats from 'lazy-stats'
 import {fillZ} from './utils.js'
 
+//TODO test sensitivity oat and ee
 export default class Sim {
-	constructor(rndNs, risks, model, resolution=128) {
+	constructor(rndNs, risks, model, resolution) {
 		const point = model()
 
 		this.risks = risks

@@ -32,7 +32,7 @@ console.log('correlation', stats.total$.cor('months'))
 
 ## API
 
-### sim( factory, confidence=0.5 ).run( N=25_000 ) ⇒ simulation
+### sim( factory, {confidence=0.5, resolution=128} ).run( N=25_000 ) ⇒ simulation
 
 * *factory*: `({N, L, W, U}) => model` where N, L, W and D are *randomVariableFactory*
 * *randomVariableFactory*: `(low, high, ...correlation) => randomVariable` to match the simulation confidence interval
@@ -46,7 +46,7 @@ console.log('correlation', stats.total$.cor('months'))
 
 ## Notes
 1. use case is human approximation in decision making - "guesstimates"
-2. default is to use a confidence interval of 50%
+2. default is to use a confidence interval of 50% (IQR)
   * familiarity with box plots
   * minimizes overconfidence
   * 50% is also conservative approximation of the median min and max of 3 occurences (`2^(1-1/n)-1=59%` for n=3). This is in line with studies showing ~50% confidence range when asked to provide ~60% confidence. Actual overconfidence varies between studies but is always present.

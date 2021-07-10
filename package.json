@@ -3,7 +3,7 @@
   "type": "module",
   "main": "sim.js",
   "browser": "sim.js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "monte carlo simulation for correlated variables expressed as ranges",
   "keywords": [
     "correlated",
@@ -24,7 +24,7 @@
     "assert-op": "^1.2.0",
     "grosso-modo": "^4.1.0",
     "lazy-stats": "^3.1.1",
-    "sample-distribution": "^1.3.1"
+    "sample-distribution": "^1.4.0"
   },
   "repository": {
     "type": "git",

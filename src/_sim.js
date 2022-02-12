@@ -94,6 +94,7 @@ export default class Sim {
 		}
 		return results
 	}
+	//one-at-a-time (OAT) Δy = y(z) - y(-z)
 	oat() {
 		const zs = new Float64Array(this.risks.length),
 					z = 0.67448, // === Q(0.75) === -Q(0.25)
@@ -114,6 +115,7 @@ export default class Sim {
 		}
 		return dyzs
 	}
+	//elementary effects - EE (morris[1991])
 	ee(hp=2 /* half p */) {
 		//divide in p=2*hp intervals and get icdf
 		const	p = 2*hp,

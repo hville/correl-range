@@ -1,4 +1,4 @@
-import icdf from 'norm-dist/icdf.js'
+import icdf from 'norm-dist/icdf-voutier.js'
 import {fillZ} from './src/utils.js'
 import {sattolo as satt, shuffle as shuf, permute as perm} from 'array-order'
 

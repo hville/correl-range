@@ -3,12 +3,12 @@ import SIM from '../sim.js'
 const tst = ({a,b},)=>3
 
 const stats = SIM(
-({N,L,W,U}, // initiation ran once
-people = L(5, 9, 'work', 0.5, 'team', 0.5),
-office = L(4, 8),
-design = L(8,12, 'team', -0.5),
-tender = L(4, 8, 'work', 0.5),
-deliver= L(8,12, 'work')
+({N,L,W,U,G}, // initiation ran once
+people = G(5, 9, 'work', 0.5, 'team', 0.5),
+office = G(4, 8),
+design = G(8,12, 'team', -0.5),
+tender = G(4, 8, 'work', 0.5),
+deliver= G(8,12, 'work')
 )=>( // calculations on every iterations
 
 )=>({ // exported results

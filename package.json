@@ -3,7 +3,7 @@
   "type": "module",
   "main": "sim.js",
   "browser": "sim.js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "monte carlo simulation for correlated variables expressed as ranges",
   "keywords": [
     "correlated",
@@ -18,11 +18,11 @@
   "author": "Hugo Villeneuve",
   "dependencies": {
     "array-order": "^2.2.0",
+    "grosso-modo": "^4.3.0",
     "norm-dist": "^3.1.0"
   },
   "devDependencies": {
     "assert-op": "^1.2.0",
-    "grosso-modo": "^4.2.0",
     "lazy-stats": "^3.1.1",
     "sample-distribution": "^1.5.0"
   },

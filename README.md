@@ -38,8 +38,10 @@ console.log('correlation', stats.total$.cor('months'))
 * *randomVariableFactory*: `(low, high, ...correlation) => randomVariable` to match the simulation confidence interval
   * N: normal
   * L: lognormal
+  * G: gumbell
   * W: weibull
   * U: uniform
+  * D: dagum
 * *randomVariable*: with `.valueOf()` that changes on each iteration
 * *simulation*
   * *stats*: empirical distribution cdf, pdf, quantiles, average (based on modules `sample-distribution` and `lazy-stats`)

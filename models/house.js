@@ -1,7 +1,5 @@
 import SIM from '../sim.js'
 
-const tst = ({a,b},)=>3
-
 const stats = SIM(
 ({N,L,W,U},
 // initiation ran once

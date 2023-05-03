@@ -34,7 +34,7 @@ console.log('correlation', stats.total$.cor('months'))
 
 ### sim( factory, {confidence=0.5, resolution=128} ).run( N=25_000 ) ⇒ simulation
 
-* *factory*: `({N, L, W, U}) => model` where N, L, W and D are *randomVariableFactory*
+* *factory*: `({N, L, G, W, U, D}) => model` where N, L, ... *randomVariableFactory*
 * *randomVariableFactory*: `(low, high, ...correlation) => randomVariable` to match the simulation confidence interval
   * N: normal
   * L: lognormal

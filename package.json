@@ -3,7 +3,7 @@
   "type": "module",
   "main": "sim.js",
   "browser": "sim.js",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "monte carlo simulation for correlated variables expressed as ranges",
   "keywords": [
     "correlated",
@@ -17,21 +17,18 @@
   ],
   "author": "Hugo Villeneuve",
   "dependencies": {
-    "array-order": "^2.2.0",
+    "@hugov/byte-views": "^0.1.0",
     "grosso-modo": "^4.3.0",
-    "norm-dist": "^3.1.0"
-  },
-  "devDependencies": {
-    "assert-op": "^1.2.0",
-    "lazy-stats": "^3.1.1",
-    "sample-distribution": "^1.6.0"
+    "lazy-stats": "^4.2.0",
+    "norm-dist": "^3.1.0",
+    "sample-distribution": "^1.7.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hville/correl-range.git"
   },
   "scripts": {
-    "test": "node ./models/costs && node ./models/costs2 && node ./models/house && node ./models/schedule",
+    "test": "node ./models/sensitivity",
     "pub": "npm publish --access public"
   },
   "license": "MIT"

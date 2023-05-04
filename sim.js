@@ -7,6 +7,7 @@ import D from 'grosso-modo/dagum.js'
 
 import RandomNumber from './src/_random-number.js'
 import Sim from './src/_sim.js'
+export {default as Stats} from './src/_stats.js'
 
 /**
  * @param {function} factory (...once) => (...each) => ({...sample})

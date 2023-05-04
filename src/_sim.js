@@ -18,8 +18,8 @@ export default class Sim {
 		this.risks = risks
 		this.rndNs = rndNs
 		this.model = model
-		const names = this.names = Object.keys( point )
-		Object.assign(this, new Stats(names, resolution)) //TODO ugly quick fix to avoid nested push functions
+		this.names = Object.keys( point )
+		Object.assign(this, new Stats(this.names, resolution)) //TODO ugly quick fix to avoid nested push functions
 
 		/**
 		 * single run with given Z inputs
@@ -28,7 +28,7 @@ export default class Sim {
 		 */
 		this.one = Function('zs',
 			`for (const rn of this.rndNs) rn.update(zs);const o=this.model();${
-			names.filter( n => typeof point[n] !== 'number')
+			this.names.filter( n => typeof point[n] !== 'number')
 				.map( n => `o['${n}']=o['${n}'].value`)
 				.join(';')
 			};return o`
@@ -51,11 +51,11 @@ export default class Sim {
 				for (const rn of this.rndNs) rn.update(zs);
 				const o=this.model();
 				this._moments.push(${
-					names.map(
+					this.names.map(
 						(n,i) => typeof point[n] === 'number' ? `o['${n}']` : `o['${n}'].value`
 					).join(',')
 				});${
-					names.map(
+					this.names.map(
 						n => typeof point[n] === 'number' ? `stats['${n}'].push(o['${n}'])` : `stats['${n}'].push(o['${n}'].value)`
 					).join(';')
 				}

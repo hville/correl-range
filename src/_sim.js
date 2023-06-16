@@ -14,12 +14,13 @@ function random(dim) {
 
 export default class Sim {
 	constructor(rndNs, risks, model, resolution) {
-		const point = model()
+		const point = model(),
+					names = Object.keys( point )
+		this.names = names
 		this.risks = risks
 		this.rndNs = rndNs
 		this.model = model
-		this.names = Object.keys( point )
-		Object.assign(this, new Stats(this.names, resolution)) //TODO ugly quick fix to avoid nested push functions
+		this.stats = new Stats( names, resolution )
 
 		/**
 		 * single run with given Z inputs
@@ -28,7 +29,7 @@ export default class Sim {
 		 */
 		this.one = Function('zs',
 			`for (const rn of this.rndNs) rn.update(zs);const o=this.model();${
-			this.names.filter( n => typeof point[n] !== 'number')
+			names.filter( n => typeof point[n] !== 'number')
 				.map( n => `o['${n}']=o['${n}'].value`)
 				.join(';')
 			};return o`
@@ -43,14 +44,14 @@ export default class Sim {
  		 * @return {Object}
 		 */
 		this.run = Function(
-		/* binded    */'random',
+		/* binded    */'random', 'moments',
 		/* arguments */'N=25000', 'sampler=random(this.risks.length)','dim',
 		/* javascrip */`const stats = this.stats;
 			for (let i=0; i<N; ++i) {
 				const zs = sampler();
 				for (const rn of this.rndNs) rn.update(zs);
 				const o=this.model();
-				this._moments.push(${
+				moments.push(${
 					this.names.map(
 						(n,i) => typeof point[n] === 'number' ? `o['${n}']` : `o['${n}'].value`
 					).join(',')
@@ -61,7 +62,7 @@ export default class Sim {
 				}
 			}
 			return this`
-		).bind(this, random)
+		).bind(this, random, Stats.momentsOf(this.stats))
 	}
 
 	all(iterations, sampler=random(this.risks.length)) {
@@ -86,5 +87,9 @@ export default class Sim {
 			for (const name of this.names) results[name][i] = +sample[name] // +important to trigger RandomNumber.valueOf()
 		}
 		return results
+	}
+
+	get buffer() {
+		return Stats.bufferOf(this.stats)
 	}
 }

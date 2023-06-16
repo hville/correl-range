@@ -3,7 +3,7 @@
   "type": "module",
   "main": "sim.js",
   "browser": "sim.js",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "monte carlo simulation for correlated variables expressed as ranges",
   "keywords": [
     "correlated",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@hugov/byte-views": "^0.1.0",
     "grosso-modo": "^4.3.0",
-    "lazy-stats": "^4.2.0",
+    "lazy-stats": "^4.3.0",
     "norm-dist": "^3.1.0",
     "sample-distribution": "^1.8.0"
   },

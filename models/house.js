@@ -16,7 +16,8 @@ total$
 })
 ).run(10_000)
 
+console.log(res.buffer)
 const stats=res.stats
 console.log('total$ range', stats.total$.Q(0.25).toFixed(0), stats.total$.Q(0.75).toFixed(0))
 console.log('months range', stats.months.Q(0.25).toFixed(4), stats.months.Q(0.75).toFixed(4))
-console.log('correlation', res.cor('total$','months'))
+console.log('correlation', stats.total$.cor('months'))

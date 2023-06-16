@@ -4,32 +4,35 @@ import LazyStats from 'lazy-stats'
 import nextView from '@hugov/byte-views'
 
 export default class Stats {
+	static bufferOf(instance) { return instance[Symbol.for('buffer')] }
+	static momentsOf(instance) { return instance[Symbol.for('moments')] }
+
 	constructor(names, resolution) {
 		const dim = names.length,
-					lazyLength = (dim+1)*(dim+2)/2
-		this.data = resolution.buffer ? resolution : new Float64Array( lazyLength + dim*resolution*2 )
-		this.stats = {}
-		let view = nextView(this.data.buffer, Float64Array, lazyLength)
-		this._moments = new LazyStats( view )
+					lazyLength = (dim+1)*(dim+2)/2,
+					indexOf = Object.fromEntries( names.map( (n,i) => [n,i] ) ),
+					buffer = resolution.buffer ? resolution : new ArrayBuffer( (lazyLength + dim*resolution*2) * 64 )
+		let view = nextView(buffer, Float64Array, lazyLength)
+		const moments = new LazyStats( view )
+
 		for (let i=0; i<dim; ++i) {
 			view = nextView(view, Float64Array, resolution*2)
-			const stat = this.stats[names[i]] = new SampleDistribution( view )
+			const stat = this[names[i]] = new SampleDistribution( view )
+			stat.ave = () => moments.ave( i )
+			stat.dev = () => moments.dev( i )
+			stat.var = () => moments.var( i )
+			stat.cov = (b) => moments.cov( i, indexOf[b] )
+			stat.cor = (b) => moments.cor( i, indexOf[b] )
+			stat.slope = (b) => moments.slope( i, indexOf[b] )
+			stat.intercept = (b) => moments.intercept( i, indexOf[b] )
 		}
-		this.ave = (a) => this._moments.ave(names.indexOf(a))
-		this.dev = (a) => this._moments.dev(names.indexOf(a))
-		this.var = (a) => this._moments.var(names.indexOf(a))
-		this.cov = (a,b) => this._moments.cov(names.indexOf(a), names.indexOf(b))
-		this.cor = (a,b) => this._moments.cor(names.indexOf(a), names.indexOf(b))
-		this.slope = (a,b) => this._moments.slope(names.indexOf(a), names.indexOf(b))
-		this.intercept = (a,b) => this._moments.intercept(names.indexOf(a), names.indexOf(b))
+
+		this[Symbol.for('buffer')] = buffer
+		this[Symbol.for('moments')] = moments
 	}
-
-	//push(res) {
-
-			/*
-	this._moments.push(...values)
-	stats[name0].push(value0)
-	stats[name1].push(value1)
-	stats[name2].push(value2)
-	*/
+	push(sample) {
+		this[Symbol.for('moments')].push(Object.values(sample))
+		for (const n of Object.keys(this)) this[n].push(sample[n])
+		return this
+	}
 }

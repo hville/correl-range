@@ -6,12 +6,15 @@ import nextView from '@hugov/byte-views'
 export default class Stats {
 	static bufferOf(instance) { return instance[Symbol.for('buffer')] }
 	static momentsOf(instance) { return instance[Symbol.for('moments')] }
-
+	/**
+	 * @param { [string] } names
+	 * @param { number|ArrayBuffer } resolution
+	 */
 	constructor(names, resolution) {
 		const dim = names.length,
 					lazyLength = (dim+1)*(dim+2)/2,
 					indexOf = Object.fromEntries( names.map( (n,i) => [n,i] ) ),
-					buffer = resolution.buffer ? resolution : new ArrayBuffer( (lazyLength + dim*resolution*2) * 64 )
+					buffer = resolution instanceof ArrayBuffer ? resolution : new ArrayBuffer( (lazyLength + dim*resolution*2) * 64 )
 		let view = nextView(buffer, Float64Array, lazyLength)
 		const moments = new LazyStats( view )
 

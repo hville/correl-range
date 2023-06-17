@@ -3,7 +3,7 @@
   "type": "module",
   "main": "sim.js",
   "browser": "sim.js",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "monte carlo simulation for correlated variables expressed as ranges",
   "keywords": [
     "correlated",
